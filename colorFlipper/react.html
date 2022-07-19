@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Flipper</title>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+
+    <link rel="stylesheet" href="css/normilize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <script type="text/babel">
+        const ColorFlipper = () => {
+            const bodyRef = React.useRef(document.body);
+
+            return (<div className="container">
+                <div className="color-info">Background Color via React: <span></span></div>
+                <button className="button-change-color" onClick={() => bodyRef.current.style.backgroundColor = getRgbColor()}>Click me!!!</button>
+            </div>);
+        };
+
+        const root = document.querySelector('#root');
+        ReactDOM.render(<ColorFlipper />, root);
+
+        const root2 = document.querySelector('#root2');
+        ReactDOM.render(<ColorFlipper />, root2);
+    </script>
+
+    <script src="js/utils.js"></script>
+</body>
+
+</html>

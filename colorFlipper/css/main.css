@@ -15,7 +15,7 @@
     font-weight: bold;
 }
 
-#btnChangeColor {
+#btnChangeColor, .button-change-color {
     width: 160px;
     height: 56px;
     border-radius: 8px;
