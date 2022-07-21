@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <script>
+        let id = 0;
+
+        const getId = () => {
+            id = id + 1;
+            return `counter${id}`;
+        }
+    </script>
+    <div id="root"></div>
+    <div>
+        <button onclick="createCounter(getId())">Create counter</button>
+    </div>
+    <div>
+        <input id="counterId">
+        <button onclick="getCounterId()">get counter id</button>
+    </div>
+    <template id="counter">
+        <div class="counter">
+            <div class="title">Counter #4</div>
+            <div class="counter__value" name="txtCounterValue">0</div>
+            <div class="buttons">
+                <button name="btnDecrease">Decrease</button>
+                <button name="btnReset">Reset</button>
+                <button name="btnIncrease">Increase</button>
+            </div>
+        </div>
+    </template>
+    <script src="js/index4.js"></script>
+</body>
+</html>
