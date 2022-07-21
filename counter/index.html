@@ -5,8 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    
+    <div class="counter">
+        <div class="title">Counter</div>
+        <div class="counter__value" name="txtCounterValue">0</div>
+        <div class="buttons">
+            <button name="btnDecrease" onclick="decrease()">Decrease</button>
+            <button name="btnReset" onclick="reset()">Reset</button>
+            <button name="btnIncrease" onclick="increase()">Increase</button>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
 </body>
 </html>
