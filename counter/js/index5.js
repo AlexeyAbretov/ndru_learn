@@ -7,35 +7,33 @@ const createCounter = (id) => {
     document.getElementById('root').append(counter);
 }
 
-const getCounterId = () => {
-    const id = document.getElementById('counterId').value;
-
-    alert(document.getElementById(id).querySelector('.counter__value').textContent);
-}
-
 const counterClick = (e) => {
     const counter = e.currentTarget.closest('.counter');
     const txtCounterValue = counter.querySelector('div[name=txtCounterValue]');
     
     console.log(e.target, e.currentTarget);
     
-    if (e.target.name === 'btnDecrease') {
-        decrease(txtCounterValue);
-    } else if (e.target.name === 'btnReset') {
+    if (e.target.name === 'btnReset') {
         reset(txtCounterValue);
-    } else if (e.target.name === 'btnIncrease') {
-        increase(txtCounterValue);
+    } else if (e.target.name === 'btnStart') {
+        start(txtCounterValue);
     }
 }
 
-const decrease = (txtCounterValue) => {
-    txtCounterValue.textContent = Number(txtCounterValue.textContent || '0') - 1;
-}
+let intervalId = {};
 
 const reset = (txtCounterValue) => {
+    const counter = txtCounterValue.closest('.counter');
+    
+    clearInterval(intervalId[counter.id]);
+
     txtCounterValue.textContent = 0;
 }
 
-const increase = (txtCounterValue) => {
-    txtCounterValue.textContent = Number(txtCounterValue.textContent || '0') + 1;
+const start = (txtCounterValue) => {
+    const counter = txtCounterValue.closest('.counter');
+
+    intervalId[counter.id] = setInterval(() => {
+        txtCounterValue.textContent = Number(txtCounterValue.textContent || '0') + 1;
+    }, 1000)
 }
