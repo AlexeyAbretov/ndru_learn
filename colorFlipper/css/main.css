@@ -25,9 +25,9 @@ body {
     border-radius: 8px;
 }
 
-/* .color-info > span {
+.color-info > span {
     text-transform: capitalize;
-} */
+}
 
 #btnChangeColor, .button-change-color {
     width: 160px;

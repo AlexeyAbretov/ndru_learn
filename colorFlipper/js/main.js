@@ -11,8 +11,7 @@ const changeColor = () => {
     document.body.style.backgroundColor = randomColor;
     txtColorName.innerHTML = randomColor;
     txtColorName.style.color = randomColor;
-    txtColorName.style.textTransform = 'capitalize';
-}
+};
 
 // const changeColorByRgb = () => {
 //     document.body.style.backgroundColor = `rgb(${getRandom(255)}, ${getRandom(255)}, ${getRandom(255)})`;
