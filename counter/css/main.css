@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #f1f5f8;
+    color: #102b42;
+}
+
+.counter .title {
+    font-size: 72px;
+    font-weight: 700;
+}
+
+.counter .counter__value {
+    font-size: 72px;
+    font-weight: 700;
+    color: #1f9bc2;
+    margin: 30px 0;
+}
+
+.counter .buttons > button {
+    color: #18181a;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    margin: 0 6px 0;
+    background-color: transparent;
+    border: 2px solid #242525;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.counter .buttons > button:hover {
+    border: 2px solid #1f9bc2;
+    color: #1f9bc2;
+}

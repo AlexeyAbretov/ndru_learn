@@ -11,7 +11,7 @@ const counterClick = (e) => {
     } else if (e.target.name === 'btnIncrease') {
         increase(txtCounterValue);
     }
-}
+};
 
 document.querySelectorAll(
     '.buttons'
@@ -21,12 +21,12 @@ document.querySelectorAll(
 
 const decrease = (txtCounterValue) => {
     txtCounterValue.textContent = Number(txtCounterValue.textContent || '0') - 1;
-}
+};
 
 const reset = (txtCounterValue) => {
     txtCounterValue.textContent = 0;
-}
+};
 
 const increase = (txtCounterValue) => {
     txtCounterValue.textContent = Number(txtCounterValue.textContent || '0') + 1;
-}
+};
