@@ -5,21 +5,19 @@ const txtCounterValue = document.querySelector(
 
 // функция присвоения цвета в зависимости от текущего значения
 const counterColorChanger = () => {
-    if (txtCounterValue.textContent == 0) {
-        txtCounterValue.style.removeProperty('color');
-    } else if (txtCounterValue.textContent > 0) {
-        txtCounterValue.style.color = 'green';
-    } else if (txtCounterValue.textContent < 0) {
-        txtCounterValue.style.color = 'red';
+    if (Number(txtCounterValue.textContent) === 0) {
+        txtCounterValue.classList.remove('counter__value_positive', 'counter__value_negative');
+    } else if (Number(txtCounterValue.textContent) > 0) {
+        txtCounterValue.classList.add('counter__value_positive');
+    } else if (Number(txtCounterValue.textContent) < 0) {
+        txtCounterValue.classList.add('counter__value_negative');
+
     }
 };
 
-// 
 const counterClick = (e) => {
     e.stopPropagation();
     
-    // console.log(e.target, e.currentTarget);
-
     if (e.target.name === 'btnDecrease') {
         decrease();
     } else if (e.target.name === 'btnReset') {
