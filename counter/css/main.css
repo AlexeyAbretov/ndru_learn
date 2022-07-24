@@ -23,8 +23,19 @@ body {
 .counter .counter__value {
     font-size: 72px;
     font-weight: 700;
-    color: #1f9bc2;
     margin: 30px 0;
+}
+
+.counter__value_zero {
+    color: #1f9bc2;
+}
+
+.counter__value_positive {
+    color: #039f0b;
+}
+
+.counter__value_negative {
+    color: #be0404;
 }
 
 .counter .buttons > button {
