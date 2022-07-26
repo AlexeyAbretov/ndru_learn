@@ -1,0 +1,13 @@
+Почитать и ознакомиться с возможностями
+
+fill
+map
+DOMContentLoaded
+
+faker <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+
+// Домашка
+
+Верстка как на экране https://www.freecodecamp.org/news/javascript-projects-for-beginners/#how-to-create-a-review-carousel
+Сделать функцию кнопки "Surprise me" + alert "random ${number}"
+Анимация смены карт (появление, скрытие)
