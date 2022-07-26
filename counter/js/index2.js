@@ -14,22 +14,30 @@ const counterColorChanger = () => {
     }
 };
 
-// 
+let timeOutId = null;
+
 const counterClick = (e) => {
     e.stopPropagation();
     
     // console.log(e.target, e.currentTarget);
 
-    if (e.target.name === 'btnDecrease') {
-        decrease();
-    } else if (e.target.name === 'btnReset') {
-        reset();
-    } else if (e.target.name === 'btnIncrease') {
-        increase();
-    }
+    txtCounterValue.classList.add('counter__value_hide');
 
-    console.log(txtCounterValue.textContent);
-    counterColorChanger();
+    timeOutId = setTimeout(() => {
+        if (e.target.name === 'btnDecrease') {
+            decrease();
+        } else if (e.target.name === 'btnReset') {
+            reset();
+        } else if (e.target.name === 'btnIncrease') {
+            increase();
+        }
+        counterColorChanger();
+
+        txtCounterValue.classList.remove('counter__value_hide');
+
+    //     timeOutId = null;
+    }, 400);
+    // console.log(txtCounterValue.textContent);
 };
 
 // функция уменьшения на 1
