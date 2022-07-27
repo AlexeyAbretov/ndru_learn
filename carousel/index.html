@@ -7,22 +7,32 @@
     <title>carousel</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 <body>
     <div class="container">
-        <div class="counter"></div>
-        <div class="card">
-            <img class="avatar" alt="avatar">
-            <div class="name"></div>
-            <div class="job"></div>
-            <div class="desc"></div>
-            <div class="buttons">
-                <button class="button__prev">prev</button>
-                <button class="button__next">next</button>
+        <h2>Our Reviews</h2>
+        <div class="reviews">
+            <div class="counter"></div>
+            <div class="card">
+                <div class="image">
+                    <img class="avatar" alt="avatar">
+                </div>
+                <div class="name"></div>
+                <div class="job"></div>
+                <div class="desc"></div>
+                <div class="buttons">
+                    <button class="button__prev"></button>
+                    <button class="button__next"></button>
+                </div>
+                <div class="surprise">
+                    <button class="button_suprise">Surprise me </button>
+                </div>
             </div>
-            <button class="button_suprise">Surprise me </button>
         </div>
     </div>
+
+    <script src="js/utils.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

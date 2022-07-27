@@ -39,7 +39,7 @@ const renderCard = (index, data) => {
 let data = null;
 let currentCard = 0;
 
-// взаимодействие с кнопками
+// подгружаем данные в карточку
 document.addEventListener('DOMContentLoaded', () => {
     getData().then((result) => {
         data = result;
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.button__prev').addEventListener('click', () => {
         currentCard--;
 
+        // зацикливание карусели
         if (currentCard < 0) {
             currentCard = data.length - 1;
         }
@@ -71,10 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.button__next').addEventListener('click', () => {
         currentCard++;
 
+        // зацикливание карусели
         if (currentCard > data.length - 1) {
             currentCard = 0;
         }
 
+        renderCard(currentCard, data);
+    });
+
+    // рандомная карточка
+    document.querySelector('.button_suprise').addEventListener('click', () => {
+        currentCard = getRandom(data.length);
+    
         renderCard(currentCard, data);
     });
 });

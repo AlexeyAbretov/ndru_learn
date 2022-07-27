@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    color: #111;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Roboto', serif;
+    background-color: #f1f5f8;
+}
+
+h2 {
+    color: #0d2840;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    padding-top: 5px;
+    border-bottom: 4px solid #47a4ea;
+    text-align: center;
+  }
+
+.container, .reviews, .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: #f1f5f8;
+    height: 100vh;
+}
+
+.reviews {
+    background-color: #fff;
+    max-width: 600px;
+    min-width: 300px;
+    margin: 20px 0 0;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
+}
+
+.counter {
+    display: none;;
+}
+
+.card .image::before {
+    content: "";
+    background-color: #49a6ea;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: calc(50% - 70px);
+    width: 50px;
+    height: 50px;
+}
+
+.card img {
+    border-radius: 50%;
+    box-shadow: 8px -4px #49a6ea;
+}
+
+.card .name {
+    color: #102c44;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin: 15px 0 0;
+}
+
+.card .job {
+    color: #4da6e9;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 5px 0 0;
+}
+
+.card .desc {
+    color: #6a849b;
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 15px 0 0;
+}
+
+.card .buttons {
+    margin: 20px 0 0;
+    color: #102c44;
+    display: flex;
+    flex-direction: row;
+}
+
+.card .buttons .button__prev, .card .buttons .button__next {
+    background: none;
+    border: none;
+}
+
+.card .buttons .button__prev {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-top: 3px solid #8bcaf8;
+    border-right: 3px solid #8bcaf8;
+    box-shadow: 0 0 0 #49a6ea;
+    transform: rotate(-135deg);
+}
+
+.card .buttons .button__next {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-top: 3px solid #8bcaf8;
+    border-right: 3px solid #8bcaf8;
+    box-shadow: 0 0 0 #49a6ea;
+    transform: rotate(45deg);
+}
+
+.card .button_suprise {
+    margin: 15px 0 0;
+    background: rgb(169 208 236 / 40%);
+    border: 2px solid #3fa1e9;
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: #4f87b8;
+    font-weight: 500;
+}
