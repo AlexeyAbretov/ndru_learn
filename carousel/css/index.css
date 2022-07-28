@@ -26,11 +26,19 @@ h2::after {
     text-align: center;
   }
 
-.container, .reviews, .card {
+.container, .reviews {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .container {
@@ -47,6 +55,8 @@ h2::after {
     padding: 25px 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 415px;
 }
 
 .counter {
@@ -78,6 +88,8 @@ h2::after {
 .card img {
     border-radius: 50%;
     box-shadow: 8px -4px #49a6ea;
+    width: 150px;
+    height: 150px;
 }
 
 .card .name {
