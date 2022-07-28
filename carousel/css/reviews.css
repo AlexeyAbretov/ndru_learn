@@ -1,0 +1,60 @@
+.reviews {
+    background-color: var(--white10);
+    max-width: 600px;
+    min-width: 300px;
+    margin: 20px 0 0;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 415px;
+}
+
+.reviews__buttons-wrapper {
+    margin: 20px 0 0;
+    flex-direction: row;
+}
+
+.reviews__button {
+    border: none;
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-top: 3px solid var(--blue20);
+    border-right: 3px solid var(--blue20);
+    box-shadow: 0 0 0 #49a6ea;
+    cursor: pointer;
+}
+
+.reviews__button:hover {
+    border-top: 3px solid #4e9fda;
+    border-right: 3px solid #4e9fda;
+}
+
+.reviews__button-prev {
+    transform: rotate(-135deg);
+}
+
+.reviews__button-next {
+    transform: rotate(45deg);
+}
+
+.reviews__surprise {
+    margin: 15px 0 0;
+}
+
+.reviews__button-surprise {
+    color: #4f87b8;
+    font-weight: 500;
+    background: rgb(169 208 236 / 40%);
+    border: 2px solid #3fa1e9;
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.reviews__button-surprise:hover {
+    color: #4e9fda;
+    background: rgb(144 184 213 / 40%);
+    border: 2px solid #4e9fda;
+}

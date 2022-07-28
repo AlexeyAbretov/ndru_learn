@@ -1,0 +1,20 @@
+body {
+    color: #111;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Roboto', serif;
+    background-color: #f1f5f8;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container_direction_column {
+    flex-direction: column;
+}
+
+.flex-container_align_center {
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,55 @@
+.card {
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility linear 0.33s, opacity 0.33s linear;
+}
+
+.card_visibility_hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.card__image::before {
+    content: "";
+    background-color: #49a6ea;
+    border-radius: 50%;
+    display: inline-block;
+    position: fixed;
+    left: calc(50% - 70px);
+    width: 50px;
+    height: 50px;
+}
+
+.card__avatar {
+    border-radius: 50%;
+    box-shadow: 8px -4px #49a6ea;
+    width: 150px;
+    height: 150px;
+}
+
+.card__name {
+    color: #102c44;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin: 15px 0 0;
+}
+
+.card__job {
+    color: #4da6e9;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 5px 0 0;
+}
+
+.card__desc {
+    color: #6a849b;
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 15px 0 0;
+}

@@ -16,11 +16,11 @@ const getData = async () => {
 
 // задаем переменные
 const cardElement = document.querySelector('.card');
-const nameElement = document.querySelector('.name');
-const jobElement = document.querySelector('.job');
-const descElement = document.querySelector('.desc');
+const nameElement = document.querySelector('.card__name');
+const jobElement = document.querySelector('.card__job');
+const descElement = document.querySelector('.card__desc');
 const counterElement = document.querySelector('.counter');
-const avatarElement = document.querySelector('.avatar');
+const avatarElement = document.querySelector('.card__avatar');
 
 // рендерим карточку
 const renderCard = (index, data) => {
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // клик назад
-    document.querySelector('.button__prev').addEventListener('click', () => {
-        cardElement.classList.add('card_hide');
+    document.querySelector('.reviews__button-prev').addEventListener('click', () => {
+        cardElement.classList.add('card_visibility_hidden');
         
         timeOutId = setTimeout(() => {
             
@@ -75,14 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // рендерим карточку
             renderCard(currentCard, data);
 
-            cardElement.classList.remove('card_hide');
+            cardElement.classList.remove('card_visibility_hidden');
     
         }, 400);
     });
 
     // клик вперед
-    document.querySelector('.button__next').addEventListener('click', () => {
-        cardElement.classList.add('card_hide');
+    document.querySelector('.reviews__button-next').addEventListener('click', () => {
+        cardElement.classList.add('card_visibility_hidden');
 
         timeOutId = setTimeout(() => {
             
@@ -97,14 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // рендерим карту
             renderCard(currentCard, data);
 
-            cardElement.classList.remove('card_hide');
+            cardElement.classList.remove('card_visibility_hidden');
     
         }, 400);
     });
 
     // рандомная карточка
-    document.querySelector('.button_suprise').addEventListener('click', () => {
-        cardElement.classList.add('card_hide');
+    document.querySelector('.reviews__button-surprise').addEventListener('click', () => {
+        cardElement.classList.add('card_visibility_hidden');
 
         timeOutId = setTimeout(() => {
             
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // рендерим карту
             renderCard(currentCard, data);
 
-            cardElement.classList.remove('card_hide');
+            cardElement.classList.remove('card_visibility_hidden');
     
         }, 400);
     });

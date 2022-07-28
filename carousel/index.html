@@ -5,33 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carousel</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Our Reviews</h2>
-        <div class="reviews">
+    <div class="flex-container flex-container_direction_column flex-container_align_center container">
+        <h2 class="title">Our Reviews</h2>
+        <div class="flex-container flex-container_direction_column flex-container_align_center reviews">
             <div class="counter"></div>
-            <div class="card">
-                <div class="image">
-                    <img class="avatar" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <div class="flex-container flex-container_direction_column card">
+                <div class="card__image">
+                    <img class="card__avatar" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                 </div>
-                <div class="name"></div>
-                <div class="job"></div>
-                <div class="desc"></div>
+                <div class="card__name"></div>
+                <div class="card__job"></div>
+                <div class="card__desc"></div>
             </div>
-            <div class="buttons">
-                <button class="button__prev"></button>
-                <button class="button__next"></button>
+            <div class="flex-container reviews__buttons-wrapper">
+                <button class="reviews__button reviews__button-prev"></button>
+                <button class="reviews__button reviews__button-next"></button>
             </div>
-            <div class="surprise">
-                <button class="button_suprise">Surprise me </button>
+            <div class="reviews__surprise">
+                <button class="reviews__button-surprise">Surprise me </button>
             </div>
         </div>
     </div>
-
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/index.js"></script>
 </body>
