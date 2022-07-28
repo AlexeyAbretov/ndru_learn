@@ -52,6 +52,17 @@ h2::after {
     display: none;;
 }
 
+.card {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility linear 0.33s, opacity 0.33s linear;
+}
+
+.card_hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
 .card .image::before {
     content: "";
     background-color: #49a6ea;
@@ -92,40 +103,36 @@ h2::after {
     margin: 15px 0 0;
 }
 
-.card .buttons {
+.reviews .buttons {
     margin: 20px 0 0;
     color: #102c44;
     display: flex;
     flex-direction: row;
 }
 
-.card .buttons .button__prev, .card .buttons .button__next {
-    background: none;
+.reviews .buttons .button__prev, .reviews .buttons .button__next {
     border: none;
-}
-
-.card .buttons .button__prev {
     width: 15px;
     height: 15px;
     background: transparent;
     border-top: 3px solid #8bcaf8;
     border-right: 3px solid #8bcaf8;
     box-shadow: 0 0 0 #49a6ea;
+}
+
+.reviews .buttons .button__prev {
     transform: rotate(-135deg);
 }
 
-.card .buttons .button__next {
-    width: 15px;
-    height: 15px;
-    background: transparent;
-    border-top: 3px solid #8bcaf8;
-    border-right: 3px solid #8bcaf8;
-    box-shadow: 0 0 0 #49a6ea;
+.reviews .buttons .button__next {
     transform: rotate(45deg);
 }
 
-.card .button_suprise {
+.reviews .surprise {
     margin: 15px 0 0;
+}
+
+.reviews .button_suprise {
     background: rgb(169 208 236 / 40%);
     border: 2px solid #3fa1e9;
     border-radius: 8px;

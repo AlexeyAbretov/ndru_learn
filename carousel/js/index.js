@@ -15,13 +15,14 @@ const getData = async () => {
 };
 
 // задаем переменные
+const cardElement = document.querySelector('.card');
 const nameElement = document.querySelector('.name');
 const jobElement = document.querySelector('.job');
 const descElement = document.querySelector('.desc');
 const counterElement = document.querySelector('.counter');
 const avatarElement = document.querySelector('.avatar');
 
-// вставляем данные в карточку
+// рендерим карточку
 const renderCard = (index, data) => {
     const cardInfo = data[index];
 
@@ -35,9 +36,10 @@ const renderCard = (index, data) => {
     }
 };
 
-// задаем стартовые переменные
+// задаем переменные
 let data = null;
 let currentCard = 0;
+let timeOutId = null;
 
 // подгружаем данные в карточку
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,32 +60,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // клик назад
     document.querySelector('.button__prev').addEventListener('click', () => {
-        currentCard--;
+        cardElement.classList.add('card_hide');
+        
+        timeOutId = setTimeout(() => {
+            
+            // номер карточки -1
+            currentCard--;
 
-        // зацикливание карусели
-        if (currentCard < 0) {
-            currentCard = data.length - 1;
-        }
+            // зацикливание карусели
+            if (currentCard < 0) {
+                currentCard = data.length - 1;
+            }
 
-        renderCard(currentCard, data);
+            // рендерим карточку
+            renderCard(currentCard, data);
+
+            cardElement.classList.remove('card_hide');
+    
+        }, 400);
     });
 
     // клик вперед
     document.querySelector('.button__next').addEventListener('click', () => {
-        currentCard++;
+        cardElement.classList.add('card_hide');
 
-        // зацикливание карусели
-        if (currentCard > data.length - 1) {
-            currentCard = 0;
-        }
+        timeOutId = setTimeout(() => {
+            
+            // номер карточки +1
+            currentCard++;
 
-        renderCard(currentCard, data);
+            // зацикливание карусели
+            if (currentCard > data.length - 1) {
+                currentCard = 0;
+            }
+
+            // рендерим карту
+            renderCard(currentCard, data);
+
+            cardElement.classList.remove('card_hide');
+    
+        }, 400);
     });
 
     // рандомная карточка
     document.querySelector('.button_suprise').addEventListener('click', () => {
-        currentCard = getRandom(data.length);
+        cardElement.classList.add('card_hide');
+
+        timeOutId = setTimeout(() => {
+            
+            // получаем рандомный номер карточки
+            currentCard = getRandom(data.length);
+
+            // рендерим карту
+            renderCard(currentCard, data);
+
+            cardElement.classList.remove('card_hide');
     
-        renderCard(currentCard, data);
+        }, 400);
     });
 });
