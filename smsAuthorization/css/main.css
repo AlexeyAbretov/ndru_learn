@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url(./buttons.css);
+@import url(./colors.css);
+
+body {
+    color: var(--txtMain);
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Roboto', serif;
+    background-color: #f1f5f8;
+}
+
+input[type='password'] {
+    border: 1px solid var(--grey);
+    line-height: 50px;
+    padding: 0 15px;
+}
+
+input[type='text'] {
+    border: 1px solid var(--grey);
+    line-height: 50px;
+    padding: 0 15px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container_direction_column {
+    flex-direction: column;
+}
+
+.flex-container_direction_row {
+    flex-direction: row;
+}
+
+.flex-container_align_center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container_justify_beetween {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container {
+    height: 100vh;
+    background-image: url(../bg.jpg);
+    background-color: rgb(63, 63, 63);
+}
+
+.sms {
+    width: 100%;
+    max-width: 400px;
+    min-height: 340px;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+.sms__return {
+    color: var(--blue);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.sms__return:hover {
+    color:rgb(63, 63, 63);
+}
+
+.sms__return::before {
+    content: "< ";
+}
+
+.sms__title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.input-code {
+    width: 100%;
+}
+
+.sms__text {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
+.sms__counter {
+    display: none;
+}
+
+._visibility {
+    display: block;
+}
+
+.sms__buttons {
+    align-items: flex-end;
+    flex-grow: 1;
+}
+
+.sms__password {
+    position: relative;
+}
+
+.password-control {
+	position: absolute;
+    top: 15px;
+    right: 10px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../view.svg) 0 0 no-repeat;
+}
+
+.password-control_hide {
+	background: url(../no-view.svg) 0 0 no-repeat;
+}

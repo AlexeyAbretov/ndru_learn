@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="flex-container flex-container_direction_column flex-container_align_center container">
+        <div class="flex-container flex-container_direction_column sms">
+            <a class="sms__return" href="">Назад</a>
+            <h2 class="sms__title">Код из СМС</h2>
+            <div class="sms__password">
+                <input class="input-code" type="password" maxlength="4" size="4" max="9999" placeholder="Введите код из СМС"></input>
+                <a href="#" class="password-control" onclick="showHidePassword()"></a>
+            </div>
+            <div class="sms__text">
+                <p>Код был отправлен на телефон +7 (963) *** ** 30</br>
+                <span class="sms__counter">Запросить код повторно можно через <span class="times"></span></span></p>
+            </div>
+            <div class="flex-container flex-container_direction_row flex-container_justify_beetween sms__buttons ">
+                <button class="button request-code" onclick="requestCode()">Запросить код</button>
+                <button class="button button_background_transparent">Не приходит код?</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/main.js"></script>
+</body>
+</html>

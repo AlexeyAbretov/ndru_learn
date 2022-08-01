@@ -1,0 +1,16 @@
+.button {
+    background-color: var(--blue);
+    padding: 20px 30px;
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+}
+
+.button_background_transparent {
+    background-color: var(--transparent);
+    color: var(--blue);
+}
+
+.button_disabled {
+    background-color: var(--grey);
+}
