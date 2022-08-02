@@ -8,16 +8,12 @@ body {
     background-color: #f1f5f8;
 }
 
-input[type='password'] {
+input[type='password'],
+input[type='text']  {
     border: 1px solid var(--grey);
     line-height: 50px;
     padding: 0 15px;
-}
-
-input[type='text'] {
-    border: 1px solid var(--grey);
-    line-height: 50px;
-    padding: 0 15px;
+    width: 100%;
 }
 
 .flex-container {
@@ -76,10 +72,6 @@ input[type='text'] {
     font-weight: 500;
 }
 
-.input-code {
-    width: 100%;
-}
-
 .sms__text {
     font-size: 0.9rem;
     line-height: 1.5rem;
@@ -89,7 +81,7 @@ input[type='text'] {
     display: none;
 }
 
-._visibility {
+.sms__counter_visibility_block {
     display: block;
 }
 
