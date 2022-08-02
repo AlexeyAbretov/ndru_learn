@@ -1,8 +1,9 @@
 // настройка
 let timeInSeconds = 30;
+let telNumber = '';
 
 // определяем переменные переменные
-let btnRequest = document.querySelector('.request-code');
+let btnRequestCode = document.querySelector('.request-code');
 let requestTimer = document.querySelector('.sms__counter');
 let timer = document.querySelector('.times');
 let inputSmsCode = document.querySelector('.input-code');
@@ -10,20 +11,20 @@ let btnShowHidePassword = document.querySelector('.password-control');
 let timerId = null;
 
 // нажатие на "Запросить код"
-btnRequest.addEventListener('click', () => {
+btnRequestCode.addEventListener('click', () => {
     addRemoveClass();
     countDown();
 });
 
 // добавление и удаление классов
 let addRemoveClass = () => {
-    btnRequest.setAttribute('disabled', true);
-    btnRequest.classList.add('button_disabled');
+    btnRequestCode.setAttribute('disabled', true);
+    btnRequestCode.classList.add('button_disabled');
     requestTimer.classList.add('sms__counter_visibility_block');
 
     setTimeout(() => {
-        btnRequest.removeAttribute('disabled');
-        btnRequest.classList.remove('button_disabled');
+        btnRequestCode.removeAttribute('disabled');
+        btnRequestCode.classList.remove('button_disabled');
         requestTimer.classList.remove('sms__counter_visibility_block');
     },
     timeInSeconds*1000);
