@@ -10,11 +10,10 @@ let btnShowHidePassword = document.querySelector('.password-control');
 let timerId = null;
 
 // нажатие на "Запросить код"
-let requestCode = () => {
-    
+btnRequest.addEventListener('click', () => {
     addRemoveClass();
     countDown();
-};
+});
 
 // добавление и удаление классов
 let addRemoveClass = () => {
@@ -48,7 +47,7 @@ let countDown = () => {
 };
 
 // показать/скрыть код
-let showHidePassword = () => {
+btnShowHidePassword.addEventListener('click', () => {
     if ( inputSmsCode.type === 'password' ) {
         inputSmsCode.setAttribute('type', 'text');
         btnShowHidePassword.classList.add('password-control_hide');
@@ -56,4 +55,4 @@ let showHidePassword = () => {
         inputSmsCode.setAttribute('type', 'password');
         btnShowHidePassword.classList.remove('password-control_hide');
     }
-};
+});

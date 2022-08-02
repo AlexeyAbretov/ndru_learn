@@ -37,7 +37,7 @@ input[type='text'] {
     align-items: center;
 }
 
-.flex-container_justify_beetween {
+.flex-container_justify_between {
     flex-wrap: wrap;
     justify-content: space-between;
 }
