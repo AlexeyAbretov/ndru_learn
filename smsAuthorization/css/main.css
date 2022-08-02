@@ -101,6 +101,7 @@ body {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
+    cursor: pointer;
 	background: url(../view.svg) 0 0 no-repeat;
 }
 
