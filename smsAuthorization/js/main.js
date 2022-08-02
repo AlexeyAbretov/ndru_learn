@@ -20,12 +20,12 @@ btnRequestCode.addEventListener('click', () => {
 let addRemoveClass = () => {
     btnRequestCode.setAttribute('disabled', true);
     btnRequestCode.classList.add('button_disabled');
-    requestTimer.classList.add('sms__counter_visibility_block');
+    requestTimer.classList.add('sms__counter_display_block');
 
     setTimeout(() => {
         btnRequestCode.removeAttribute('disabled');
         btnRequestCode.classList.remove('button_disabled');
-        requestTimer.classList.remove('sms__counter_visibility_block');
+        requestTimer.classList.remove('sms__counter_display_block');
     },
     timeInSeconds*1000);
 };

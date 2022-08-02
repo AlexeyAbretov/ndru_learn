@@ -8,8 +8,7 @@ body {
     background-color: #f1f5f8;
 }
 
-input[type='password'],
-input[type='text']  {
+.input {
     border: 1px solid var(--grey);
     line-height: 50px;
     padding: 0 15px;
@@ -82,7 +81,7 @@ input[type='text']  {
     display: none;
 }
 
-.sms__counter_visibility_block {
+.sms__counter_display_block {
     display: block;
 }
 
