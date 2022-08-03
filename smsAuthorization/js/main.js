@@ -1,5 +1,5 @@
 // настройка
-let setTimeInSeconds = 5;
+let setTimeInSeconds = 120;
 
 // определяем переменные переменные
 let btnRequestCode = document.querySelector('.request-code');
