@@ -1,5 +1,5 @@
 // настройка
-let setTimeInSeconds = 130;
+let setTimeInSeconds = 5;
 
 // определяем переменные переменные
 let btnRequestCode = document.querySelector('.request-code');
@@ -54,8 +54,20 @@ let addRemoveClass = () => {
 let startCountDown = () => {
     let count = setTimeInSeconds;
     
+    // вычисляем минуты и секунды
+    let minutes = Math.floor(count / 60);
+    let seconds = count % 60;
+
+    // формат вывода минут и секунд 00:00
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    timer.textContent = `${minutes}:${seconds}`;
+
     let timerId = setInterval(() => {
         if ( count > 0 ) {
+            count--;
+
             // вычисляем минуты и секунды
             let minutes = Math.floor(count / 60);
             let seconds = count % 60;
@@ -64,7 +76,6 @@ let startCountDown = () => {
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
             
-            count--;
             timer.textContent = `${minutes}:${seconds}`;
         } else {
             count = setTimeInSeconds;
