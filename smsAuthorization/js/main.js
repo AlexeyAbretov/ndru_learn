@@ -1,5 +1,5 @@
 // настройка
-let setTimeInSeconds = 120;
+let setTimeInSeconds = 130;
 
 // определяем переменные переменные
 let btnRequestCode = document.querySelector('.request-code');
@@ -50,39 +50,37 @@ let addRemoveClass = () => {
     setTimeInSeconds*1000);
 };
 
-// функция отсчета времени
+// функция обратного отсчета
 let startCountDown = () => {
     let count = setTimeInSeconds;
-    
-    // вычисляем минуты и секунды
-    let minutes = Math.floor(count / 60);
-    let seconds = count % 60;
 
-    // формат вывода минут и секунд 00:00
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    
-    timer.textContent = `${minutes}:${seconds}`;
+    timer.textContent = transformTime(count);
 
     let timerId = setInterval(() => {
         if ( count > 0 ) {
             count--;
 
-            // вычисляем минуты и секунды
-            let minutes = Math.floor(count / 60);
-            let seconds = count % 60;
-
-            // формат вывода минут и секунд 00:00
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            
-            timer.textContent = `${minutes}:${seconds}`;
+            timer.textContent = transformTime(count);
         } else {
             count = setTimeInSeconds;
 
             clearInterval(timerId);
         }
     }, 1000);
+};
+
+// трансформируем вывод обратного отсчета
+let transformTime = (count) => {
+    // вычисляем минуты и секунды
+    let minutes = Math.floor(count / 60);
+    let seconds = count % 60;
+
+    // формат добавляем 0 к минутам и секундам
+    // minutes = minutes < 10 ? "0" + minutes : minutes;
+    // seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    // возврат в формате 00:00
+    return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`;
 };
 
 // функция показа и скрытия введенного кода
