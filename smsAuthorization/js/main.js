@@ -1,95 +1,171 @@
-// настройка
-let setTimeInSeconds = 130;
+let setTimeInSeconds = 10; // время обратного отсчета
 
-// определяем переменные переменные
-let btnRequestCode = document.querySelector('.request-code');
-let requestTimer = document.querySelector('.sms__counter');
-let timer = document.querySelector('.times');
-let inputSmsCode = document.querySelector('.input-code');
-let btnShowHidePassword = document.querySelector('.password-control');
-let phoneNumber = document.querySelector('.sms__phone-number');
-let timerId = null;
+const divTel = document.querySelector('.tel'),
+      btnNext = divTel.querySelector('.next'),
+      inputPhoneNumber = divTel.querySelector('.input-tel'),
+      chboxPersonalData = divTel.querySelector('.checkbox');
 
-// запуск функций при загрузке странице
+const divSms = document.querySelector('.sms'),
+      btnTogglePasswordVisibility = divSms.querySelector('.password-control'),
+      btnGetPassword = divSms.querySelector('.request-code'),
+      btnBack = divSms.querySelector('.sms__return'),
+      inputPassword = divSms.querySelector('.input-code'),
+      txtPhoneNumber = divSms.querySelector('.sms__phone-number'),
+      txtCounter = divSms.querySelector('.sms__counter'),
+      timer = divSms.querySelector('.timer');
+
+let strPhoneNumber = '',
+    timeOutId = null;
+
+
+//////////////////////////////////////////////////////////////
+
 document.addEventListener('DOMContentLoaded', () => {
-    hidePhoneNumber();
-    addRemoveClass();
-    startCountDown();
-});
+    divTel.classList.replace('hide', 'show');
+    disableButton(btnNext);
 
-// запуск фукнций по нажатию "Запросить код"
-btnRequestCode.addEventListener('click', () => {
-    addRemoveClass();
-    startCountDown();
-});
+    inputPhoneNumber.addEventListener('input', (tel) => {                
+        mask(tel);
+        strPhoneNumber = inputPhoneNumber.value;
 
-// запуск функции при нажатии 'Eye'
-btnShowHidePassword.addEventListener('click', () => {
-    showHidePassword();
-});
+        toggleNextButton();
+    });
 
-// функция скрытия номера телефона
-let hidePhoneNumber = () => {
-    let phone = phoneNumber.innerHTML;
-    phone = phone.substring(0, 9) + '*** **' + phone.substring(15);
+    chboxPersonalData.addEventListener('click', () => {
+        toggleNextButton();
+    });
 
-    phoneNumber.innerHTML = phone;
-};
+    btnNext.addEventListener('click', () => {
+        divTel.classList.replace('show', 'hide');
+        divSms.classList.replace('hide', 'show');
+        inputPassword.value = '';
 
-// функция добавление и удаление классов
-let addRemoveClass = () => {
-    btnRequestCode.setAttribute('disabled', true);
-    btnRequestCode.classList.add('button_disabled');
-    requestTimer.classList.add('sms__counter_display_block');
+        hidePhoneNumber(strPhoneNumber);
+        startCountDown(setTimeInSeconds, timer);
+        disableButton(btnGetPassword);
+        activateCounter();
+    });
 
-    setTimeout(() => {
-        btnRequestCode.removeAttribute('disabled');
-        btnRequestCode.classList.remove('button_disabled');
-        requestTimer.classList.remove('sms__counter_display_block');
-    },
-    setTimeInSeconds*1000);
-};
+    btnBack.addEventListener('click', () => {
+        divTel.classList.replace('hide', 'show');
+        divSms.classList.replace('show', 'hide');
+        inputPhoneNumber.value = '';
+        strPhoneNumber = '';
+        chboxPersonalData.checked = false;
 
-// функция обратного отсчета
-let startCountDown = () => {
-    let count = setTimeInSeconds;
+        disableButton(btnNext);
+        clearInterval(timeOutId);
+        hidePassword();
+    });
 
-    timer.textContent = transformTime(count);
+    btnGetPassword.addEventListener('click', () => {
+        startCountDown(setTimeInSeconds, timer);
+        disableButton(btnGetPassword);
+    });
 
-    let timerId = setInterval(() => {
-        if ( count > 0 ) {
-            count--;
-
-            timer.textContent = transformTime(count);
+    btnTogglePasswordVisibility.addEventListener('click', () => {
+        if ( inputPassword.type === 'password' ) {
+            showPassword();
         } else {
-            count = setTimeInSeconds;
+            hidePassword();
+        }
+    });
+});
 
-            clearInterval(timerId);
+
+//////////////////////////////////////////////////////////////
+
+let disableButton = (btn) => {
+    btn.setAttribute('disabled', true);
+    btn.classList.add('button_disabled');
+};
+
+let activateButton = (btn) => {
+    btn.removeAttribute('disabled');
+    btn.classList.remove('button_disabled');
+};
+
+let toggleNextButton = () => {
+    if(chboxPersonalData.checked && strPhoneNumber.length === 18) {
+        activateButton(btnNext);
+    } else {
+        disableButton(btnNext);
+    }
+};
+
+let hidePassword = () => {
+    inputPassword.setAttribute('type', 'password');
+    btnTogglePasswordVisibility.classList.remove('password-control_hide');
+};
+
+let showPassword = () => {
+    inputPassword.setAttribute('type', 'text');
+    btnTogglePasswordVisibility.classList.add('password-control_hide');
+};
+
+let disableCounter = () => {
+    txtCounter.classList.remove('sms__counter_display_block');
+};
+
+let activateCounter = () => {
+    txtCounter.classList.add('sms__counter_display_block');
+};
+
+
+//////////////////////////////////////////////////////////////
+
+let hidePhoneNumber = (phone) => {
+    phone = phone.substring(0, 9) + '*** ** ' + phone.substring(16);
+
+    txtPhoneNumber.textContent = phone;
+};
+
+
+//////////////////////////////////////////////////////////////
+
+let startCountDown = (start, item) => {
+    item.textContent = transformTime(start);
+    activateCounter();
+    
+    timeOutId = setInterval(() => {
+        if ( start > 1 ) {
+            start--;
+            item.textContent = transformTime(start);
+        } else {
+            disableCounter();
+            activateButton(btnGetPassword);
+            clearInterval(timeOutId);
         }
     }, 1000);
 };
 
-// трансформируем вывод обратного отсчета
-let transformTime = (count) => {
-    // вычисляем минуты и секунды
-    let minutes = Math.floor(count / 60);
-    let seconds = count % 60;
+let transformTime = (start) => {
+    let minutes = Math.floor(start / 60);
+    let seconds = start % 60;
 
-    // формат добавляем 0 к минутам и секундам
-    // minutes = minutes < 10 ? "0" + minutes : minutes;
-    // seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    // возврат в формате 00:00
     return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`;
 };
 
-// функция показа и скрытия введенного кода
-let showHidePassword = () => {
-    if ( inputSmsCode.type === 'password' ) {
-        inputSmsCode.setAttribute('type', 'text');
-        btnShowHidePassword.classList.add('password-control_hide');
-    } else {
-        inputSmsCode.setAttribute('type', 'password');
-        btnShowHidePassword.classList.remove('password-control_hide');
-    }
+
+//////////////////////////////////////////////////////////////
+
+let mask = (tel) => {
+    let x = tel.target.value.replace(/\D/g, '')
+            .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+
+        if (!x[0]) {
+            tel.target.value = '+';
+            return;
+        }
+
+        if (!x[1]) {
+            tel.target.value = `7`;
+            return;
+        }
+
+        tel.target.value = `+7 `
+            +`(${x[2]}`
+            + ( x[3] ? `) ${x[3]}` : '' )
+            + ( x[4] ? `-${x[4]}` : '' )
+            + ( x[5] ? `-${x[5]}` : '' );
 };

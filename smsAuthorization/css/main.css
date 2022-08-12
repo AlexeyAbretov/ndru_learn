@@ -43,13 +43,28 @@ body {
     background-color: rgb(63, 63, 63);
 }
 
-.sms {
+.wrapper {
     width: 100%;
     max-width: 400px;
     min-height: 340px;
     padding: 30px;
     background-color: var(--white);
     border-radius: 8px;
+}
+
+.wrapper__title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.wrapper__text {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
+.wrapper__buttons {
+    align-items: flex-end;
+    flex-grow: 1;
 }
 
 .sms__return {
@@ -70,27 +85,12 @@ body {
     padding: 0px 5px 0 0;
 }
 
-.sms__title {
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-.sms__text {
-    font-size: 0.9rem;
-    line-height: 1.5rem;
-}
-
 .sms__counter {
     display: none;
 }
 
 .sms__counter_display_block {
     display: block;
-}
-
-.sms__buttons {
-    align-items: flex-end;
-    flex-grow: 1;
 }
 
 .sms__password {
@@ -110,4 +110,17 @@ body {
 
 .password-control_hide {
 	background: url(../no-view.svg) 0 0 no-repeat;
+}
+
+.personal-data {
+    color: blue;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
