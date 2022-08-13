@@ -1,6 +1,7 @@
 let setTimeInSeconds = 10; // время обратного отсчета
 
 const input = document.querySelectorAll('.input');
+const label = document.querySelectorAll('.label');
 
 const divTel = document.querySelector('.tel'),
       btnNext = divTel.querySelector('.next'),
@@ -43,7 +44,7 @@ btnBack.addEventListener('click', () => {
     disableButton(btnNext);
     clearInterval(timeOutId);
     hidePassword();
-    toggleInputLabel();
+    resetInputLabel();
 });
 
 btnGetPassword.addEventListener('click', () => {
@@ -69,6 +70,20 @@ inputPhoneNumber.addEventListener('input', (tel) => {
 chboxPersonalData.addEventListener('click', () => {
     toggleNextButton();
 });
+
+input.forEach((element) => {    
+    let elementId = element.getAttribute(`id`);
+    let labelElem = document.querySelector(`label[for='${elementId}']`);
+
+    element.addEventListener('blur', (e) => {        
+        if (e.target.value !== '') {
+            labelElem.classList.add('filled');
+        } else {
+            labelElem.classList.remove('filled');
+        }
+    });
+});
+
 
 //////////////////////////////////////////////////////////////
 
@@ -108,22 +123,11 @@ let activateCounter = () => {
     txtCounter.classList.add('sms__counter_display_block');
 };
 
-input.forEach((element) => {
-    element.addEventListener('blur', (e) => {
-        if (e.target.value !== '') {
-            e.target.nextElementSibling.classList.add('filled');
-        } else {
-            e.target.nextElementSibling.classList.remove('filled');
-        }
-    });
-});
-
-let toggleInputLabel = () => {
-    input.forEach((e) => {
-        e.nextElementSibling.classList.remove('filled');
+let resetInputLabel = () => {
+    label.forEach((element) => {
+        element.classList.remove('filled');
     });
 };
-
 
 //////////////////////////////////////////////////////////////
 

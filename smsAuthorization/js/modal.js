@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
          /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
             и будем искать модальное окно с таким же атрибутом. */
-            let modalId = this.getAttribute('data-modal'),
-            modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
+         let modalId = this.getAttribute('data-modal'),
+         modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
 
          /* После того как нашли нужное модальное окно, добавим классы
             подложке и окну чтобы показать их. */
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
    closeButtons.forEach(function(item){
       item.addEventListener('click', function(e) {
-        let parentModal = this.closest('.modal');
+         let parentModal = this.closest('.modal');
 
          parentModal.classList.remove('active');
          overlay.classList.remove('active');

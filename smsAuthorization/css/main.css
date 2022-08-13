@@ -12,6 +12,15 @@ body {
     position: relative;
 }
 
+.label {
+    color: #787878;
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    transition: 0.2s ease all;
+    z-index: 1;
+}
+
 .input {
     border: 1px solid var(--grey);
     line-height: 60px;
@@ -27,15 +36,6 @@ body {
 
 .input:focus::placeholder{
     opacity: 1;
-}
-
-.label {
-    color: #787878;
-    position: absolute;
-    left: 16px;
-    top: 20px;
-    transition: 0.2s ease all;
-    z-index: 1;
 }
 
 .input:focus + .label,
