@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="container flex-container flex-container_direction_column flex-container_align_center">
-        <div class="flex-container flex-container_direction_column wrapper">
+    <div class="container flex-container flex-container_align_center">
+        <div class="flex-container wrapper">
             <div class="tel hide">
                 <h2 class="wrapper__title">Ваш номер телефона</h2>
-                <input class="input input-tel" minlength="18" maxlength="18" type="text" placeholder="Телефон"></input>
+                <div class="wrapper__input">
+                    <input class="input input-tel" type="text" id="tel" name="tel" minlength="18" maxlength="18" placeholder="Введите номер телефона"></input>
+                    <label class="label" for="tel">Телефон</label>
+                </div>
                 <div class="wrapper__text">
                     <p><input class="checkbox" type="checkbox"> Разрешаю <span class="personal-data js-open-modal" data-modal="1">обработку моих персональных данных</span></p>
                 </div>
@@ -28,8 +31,9 @@
             <div class="sms hide">
                 <span class="sms__return">Назад</span>
                 <h2 class="wrapper__title">Код из СМС</h2>
-                <div class="sms__password">
-                    <input class="input input-code" type="password" maxlength="4" size="4" max="9999" placeholder="Введите код из СМС"></input>
+                <div class="wrapper__input">
+                    <input class="input input-code" type="password" id="password" maxlength="4" size="4" max="9999" placeholder="Введите код из СМС"></input>
+                    <label class="label" for="password">Код из СМС</label>
                     <span class="password-control"></span>
                 </div>
                 <div class="wrapper__text">

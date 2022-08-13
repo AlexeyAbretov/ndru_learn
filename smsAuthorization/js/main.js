@@ -1,5 +1,7 @@
 let setTimeInSeconds = 10; // время обратного отсчета
 
+const input = document.querySelectorAll('.input');
+
 const divTel = document.querySelector('.tel'),
       btnNext = divTel.querySelector('.next'),
       inputPhoneNumber = divTel.querySelector('.input-tel'),
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         disableButton(btnNext);
         clearInterval(timeOutId);
         hidePassword();
+        toggleInputLabel();
     });
 
     btnGetPassword.addEventListener('click', () => {
@@ -69,6 +72,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             hidePassword();
         }
+    });
+
+    input.forEach((element) => {
+        element.addEventListener('blur', (e) => {
+            if (e.target.value !== '') {
+                e.target.nextElementSibling.classList.add('filled');
+            } else {
+                e.target.nextElementSibling.classList.remove('filled');
+            }
+        });
     });
 });
 
@@ -109,6 +122,12 @@ let disableCounter = () => {
 
 let activateCounter = () => {
     txtCounter.classList.add('sms__counter_display_block');
+};
+
+let toggleInputLabel = () => {
+    input.forEach((e) => {
+        e.nextElementSibling.classList.remove('filled');
+    });
 };
 
 
