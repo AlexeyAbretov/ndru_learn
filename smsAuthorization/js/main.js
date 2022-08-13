@@ -22,69 +22,53 @@ let strPhoneNumber = '',
 
 //////////////////////////////////////////////////////////////
 
-document.addEventListener('DOMContentLoaded', () => {
-    divTel.classList.replace('hide', 'show');
-    disableButton(btnNext);
+btnNext.addEventListener('click', () => {
+    divTel.classList.replace('show', 'hide');
+    divSms.classList.replace('hide', 'show');
+    inputPassword.value = '';
 
-    inputPhoneNumber.addEventListener('input', (tel) => {                
-        mask(tel);
-        strPhoneNumber = inputPhoneNumber.value;
-
-        toggleNextButton();
-    });
-
-    chboxPersonalData.addEventListener('click', () => {
-        toggleNextButton();
-    });
-
-    btnNext.addEventListener('click', () => {
-        divTel.classList.replace('show', 'hide');
-        divSms.classList.replace('hide', 'show');
-        inputPassword.value = '';
-
-        hidePhoneNumber(strPhoneNumber);
-        startCountDown(setTimeInSeconds, timer);
-        disableButton(btnGetPassword);
-        activateCounter();
-    });
-
-    btnBack.addEventListener('click', () => {
-        divTel.classList.replace('hide', 'show');
-        divSms.classList.replace('show', 'hide');
-        inputPhoneNumber.value = '';
-        strPhoneNumber = '';
-        chboxPersonalData.checked = false;
-
-        disableButton(btnNext);
-        clearInterval(timeOutId);
-        hidePassword();
-        toggleInputLabel();
-    });
-
-    btnGetPassword.addEventListener('click', () => {
-        startCountDown(setTimeInSeconds, timer);
-        disableButton(btnGetPassword);
-    });
-
-    btnTogglePasswordVisibility.addEventListener('click', () => {
-        if ( inputPassword.type === 'password' ) {
-            showPassword();
-        } else {
-            hidePassword();
-        }
-    });
-
-    input.forEach((element) => {
-        element.addEventListener('blur', (e) => {
-            if (e.target.value !== '') {
-                e.target.nextElementSibling.classList.add('filled');
-            } else {
-                e.target.nextElementSibling.classList.remove('filled');
-            }
-        });
-    });
+    hidePhoneNumber(strPhoneNumber);
+    startCountDown(setTimeInSeconds, timer);
+    disableButton(btnGetPassword);
+    activateCounter();
 });
 
+btnBack.addEventListener('click', () => {
+    divTel.classList.replace('hide', 'show');
+    divSms.classList.replace('show', 'hide');
+    inputPhoneNumber.value = '';
+    strPhoneNumber = '';
+    chboxPersonalData.checked = false;
+
+    disableButton(btnNext);
+    clearInterval(timeOutId);
+    hidePassword();
+    toggleInputLabel();
+});
+
+btnGetPassword.addEventListener('click', () => {
+    startCountDown(setTimeInSeconds, timer);
+    disableButton(btnGetPassword);
+});
+
+btnTogglePasswordVisibility.addEventListener('click', () => {
+    if ( inputPassword.type === 'password' ) {
+        showPassword();
+    } else {
+        hidePassword();
+    }
+});
+
+inputPhoneNumber.addEventListener('input', (tel) => {                
+    mask(tel);
+    strPhoneNumber = inputPhoneNumber.value;
+
+    toggleNextButton();
+});
+
+chboxPersonalData.addEventListener('click', () => {
+    toggleNextButton();
+});
 
 //////////////////////////////////////////////////////////////
 
@@ -123,6 +107,16 @@ let disableCounter = () => {
 let activateCounter = () => {
     txtCounter.classList.add('sms__counter_display_block');
 };
+
+input.forEach((element) => {
+    element.addEventListener('blur', (e) => {
+        if (e.target.value !== '') {
+            e.target.nextElementSibling.classList.add('filled');
+        } else {
+            e.target.nextElementSibling.classList.remove('filled');
+        }
+    });
+});
 
 let toggleInputLabel = () => {
     input.forEach((e) => {
