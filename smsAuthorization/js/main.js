@@ -1,8 +1,5 @@
 let setTimeInSeconds = 10; // время обратного отсчета
 
-const input = document.querySelectorAll('.input');
-const label = document.querySelectorAll('.label');
-
 const divTel = document.querySelector('.tel'),
       btnNext = divTel.querySelector('.next'),
       inputPhoneNumber = divTel.querySelector('.input-tel'),
@@ -18,85 +15,25 @@ const divSms = document.querySelector('.sms'),
       timer = divSms.querySelector('.timer');
 
 let strPhoneNumber = '',
-    timeOutId = null;
+    intervalId = null;
 
 
-//////////////////////////////////////////////////////////////
-
-btnNext.addEventListener('click', () => {
-    divTel.classList.replace('show', 'hide');
-    divSms.classList.replace('hide', 'show');
-    inputPassword.value = '';
-
-    hidePhoneNumber(strPhoneNumber);
-    startCountDown(setTimeInSeconds, timer);
-    disableButton(btnGetPassword);
-    activateCounter();
-});
-
-btnBack.addEventListener('click', () => {
-    divTel.classList.replace('hide', 'show');
-    divSms.classList.replace('show', 'hide');
-    inputPhoneNumber.value = '';
-    strPhoneNumber = '';
-    chboxPersonalData.checked = false;
-
-    disableButton(btnNext);
-    clearInterval(timeOutId);
-    hidePassword();
-    resetInputLabel();
-});
-
-btnGetPassword.addEventListener('click', () => {
-    startCountDown(setTimeInSeconds, timer);
-    disableButton(btnGetPassword);
-});
-
-btnTogglePasswordVisibility.addEventListener('click', () => {
-    if ( inputPassword.type === 'password' ) {
-        showPassword();
-    } else {
-        hidePassword();
-    }
-});
-
-inputPhoneNumber.addEventListener('input', (tel) => {                
-    mask(tel);
+// Ввод номера телефона
+inputPhoneNumber.addEventListener('input', (phone) => {                
+    addPhoneMask(phone);
     strPhoneNumber = inputPhoneNumber.value;
 
     toggleNextButton();
 });
 
+
+// Чекбокс "Обработка персональных данных"
 chboxPersonalData.addEventListener('click', () => {
     toggleNextButton();
 });
 
-input.forEach((element) => {    
-    let elementId = element.getAttribute(`id`);
-    let labelElem = document.querySelector(`label[for='${elementId}']`);
 
-    element.addEventListener('blur', (e) => {        
-        if (e.target.value !== '') {
-            labelElem.classList.add('filled');
-        } else {
-            labelElem.classList.remove('filled');
-        }
-    });
-});
-
-
-//////////////////////////////////////////////////////////////
-
-let disableButton = (btn) => {
-    btn.setAttribute('disabled', true);
-    btn.classList.add('button_disabled');
-};
-
-let activateButton = (btn) => {
-    btn.removeAttribute('disabled');
-    btn.classList.remove('button_disabled');
-};
-
+// Переключение кнопки
 let toggleNextButton = () => {
     if(chboxPersonalData.checked && strPhoneNumber.length === 18) {
         activateButton(btnNext);
@@ -105,32 +42,32 @@ let toggleNextButton = () => {
     }
 };
 
-let hidePassword = () => {
-    inputPassword.setAttribute('type', 'password');
-    btnTogglePasswordVisibility.classList.remove('password-control_hide');
+
+// Активация кнопки
+let activateButton = (btn) => {
+    btn.removeAttribute('disabled');
+    btn.classList.remove('button_disabled');
 };
 
-let showPassword = () => {
-    inputPassword.setAttribute('type', 'text');
-    btnTogglePasswordVisibility.classList.add('password-control_hide');
+
+// Отключение кнопки
+let disableButton = (btn) => {
+    btn.setAttribute('disabled', true);
+    btn.classList.add('button_disabled');
 };
 
-let disableCounter = () => {
-    txtCounter.classList.remove('sms__counter_display_block');
-};
 
-let activateCounter = () => {
-    txtCounter.classList.add('sms__counter_display_block');
-};
+// Кнопка "Продолжить"
+btnNext.addEventListener('click', () => {
+    divTel.classList.replace('show', 'hide');
+    divSms.classList.replace('hide', 'show');
 
-let resetInputLabel = () => {
-    label.forEach((element) => {
-        element.classList.remove('filled');
-    });
-};
+    hidePhoneNumber(strPhoneNumber);
+    startCountDown(setTimeInSeconds, timer);
+});
 
-//////////////////////////////////////////////////////////////
 
+// Скрытие номера телефона
 let hidePhoneNumber = (phone) => {
     phone = phone.substring(0, 9) + '*** ** ' + phone.substring(16);
 
@@ -138,51 +75,119 @@ let hidePhoneNumber = (phone) => {
 };
 
 
-//////////////////////////////////////////////////////////////
+// Кнопка "Назад"
+btnBack.addEventListener('click', () => {
+    divSms.classList.replace('show', 'hide');
+    divTel.classList.replace('hide', 'show');
+    inputPhoneNumber.value = '';
+    strPhoneNumber = '';
+    inputPassword.value = '';
+    chboxPersonalData.checked = false;
 
-let startCountDown = (start, item) => {
-    item.textContent = transformTime(start);
-    activateCounter();
-    
-    timeOutId = setInterval(() => {
-        if ( start > 1 ) {
-            start--;
-            item.textContent = transformTime(start);
+    disableButton(btnNext);
+    clearInterval(intervalId);
+    hidePassword();
+    resetInputLabel();
+});
+
+
+// Кнопка "Запросить код"
+btnGetPassword.addEventListener('click', () => {
+    startCountDown(setTimeInSeconds, timer);
+});
+
+
+// Кнопка показа/скрытия пароля
+btnTogglePasswordVisibility.addEventListener('click', () => {
+    if ( inputPassword.type === 'password' ) {
+        showPassword();
+    } else {
+        hidePassword();
+    }
+});
+
+
+// Показ пароля
+let showPassword = () => {
+    inputPassword.setAttribute('type', 'text');
+    btnTogglePasswordVisibility.classList.add('password-control_hide');
+};
+
+
+// Скрытие пароля
+let hidePassword = () => {
+    inputPassword.setAttribute('type', 'password');
+    btnTogglePasswordVisibility.classList.remove('password-control_hide');
+};
+
+
+// Поля ввода
+const input = document.querySelectorAll('.input'),
+      label = document.querySelectorAll('.label');
+
+input.forEach(item => {
+    let inputId = item.getAttribute(`id`),
+        labelElem = document.querySelector(`label[for='${inputId}']`);
+
+    item.addEventListener('blur', (e) => {        
+        if (e.target.value !== '') {
+            labelElem.classList.add('filled');
         } else {
-            disableCounter();
+            labelElem.classList.remove('filled');
+        }
+    }); // end blur
+}); // end foreach
+
+let resetInputLabel = () => {
+    label.forEach(item => {
+        item.classList.remove('filled');
+    }); // end foreach
+};
+
+
+// Обратный отсчет
+let startCountDown = (time, item) => {
+    disableButton(btnGetPassword);
+    item.textContent = transformTime(time);
+    txtCounter.classList.add('sms__counter_display_block');
+    
+    intervalId = setInterval(() => {
+        if ( time > 1 ) {
+            time--;
+            item.textContent = transformTime(time);
+        } else {
+            txtCounter.classList.remove('sms__counter_display_block');
             activateButton(btnGetPassword);
-            clearInterval(timeOutId);
+            clearInterval(intervalId);
         }
     }, 1000);
 };
 
-let transformTime = (start) => {
-    let minutes = Math.floor(start / 60);
-    let seconds = start % 60;
+let transformTime = (time) => {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
 
     return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`;
 };
 
-
-//////////////////////////////////////////////////////////////
-
-let mask = (tel) => {
-    let x = tel.target.value.replace(/\D/g, '')
+// Маска телефона
+let addPhoneMask = (phone) => {
+    let x = phone.target.value.replace(/\D/g, '')
             .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    
+    if (!x[0]) {
+        phone.target.value = '+';
+        return;
+    }
+    
+    if (!x[1]) {
+        phone.target.value = `7`;
+        return;
+    }
 
-        if (!x[0]) {
-            tel.target.value = '+';
-            return;
-        }
-
-        if (!x[1]) {
-            tel.target.value = `7`;
-            return;
-        }
-
-        tel.target.value = `+7 `
-            +`(${x[2]}`
-            + ( x[3] ? `) ${x[3]}` : '' )
-            + ( x[4] ? `-${x[4]}` : '' )
-            + ( x[5] ? `-${x[5]}` : '' );
+    phone.target.value = `+7 `
+        + `(${x[2]}`
+        + ( x[3] ? `) ${x[3]}` : '' )
+        + ( x[4] ? `-${x[4]}` : '' )
+        + ( x[5] ? `-${x[5]}` : '' );
 };
