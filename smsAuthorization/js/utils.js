@@ -32,3 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }); // end click
 });
+
+// Маска телефона
+let addPhoneMask = (phone) => {
+    let x = phone.target.value.replace(/\D/g, '')
+            .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    
+    if (!x[0]) {
+        phone.target.value = '+';
+        return;
+    }
+    
+    if (!x[1]) {
+        phone.target.value = `7`;
+        return;
+    }
+
+    phone.target.value = `+7 ` + `(${x[2]}` + ( x[3] ? `) ${x[3]}` : '' ) + ( x[4] ? `-${x[4]}` : '' ) + ( x[5] ? `-${x[5]}` : '' );
+};

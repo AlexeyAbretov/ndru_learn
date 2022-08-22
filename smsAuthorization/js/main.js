@@ -22,7 +22,6 @@ let strPhoneNumber = '',
 inputPhoneNumber.addEventListener('input', (phone) => {                
     addPhoneMask(phone);
     strPhoneNumber = inputPhoneNumber.value;
-
     toggleNextButton();
 });
 
@@ -62,16 +61,15 @@ btnNext.addEventListener('click', () => {
     divTel.classList.replace('show', 'hide');
     divSms.classList.replace('hide', 'show');
 
-    hidePhoneNumber(strPhoneNumber);
+    hidePhoneNumber(txtPhoneNumber, strPhoneNumber);
     startCountDown(setTimeInSeconds, timer);
 });
 
 
 // Скрытие номера телефона
-let hidePhoneNumber = (phone) => {
-    phone = phone.substring(0, 9) + '*** ** ' + phone.substring(16);
-
-    txtPhoneNumber.textContent = phone;
+let hidePhoneNumber = (item, phone) => {
+    let str = phone.substring(0, 9) + '*** ** ' + phone.substring(16);
+    item.textContent = str;
 };
 
 
@@ -79,15 +77,15 @@ let hidePhoneNumber = (phone) => {
 btnBack.addEventListener('click', () => {
     divSms.classList.replace('show', 'hide');
     divTel.classList.replace('hide', 'show');
-    inputPhoneNumber.value = '';
     strPhoneNumber = '';
-    inputPassword.value = '';
     chboxPersonalData.checked = false;
 
+    resetInputValue(inputPhoneNumber);
+    resetInputValue(inputPassword);
     disableButton(btnNext);
     clearInterval(intervalId);
     hidePassword();
-    resetInputLabel();
+    resetInputLabels();
 });
 
 
@@ -121,6 +119,20 @@ let hidePassword = () => {
 };
 
 
+// Сброс Input Value
+let resetInputValue = (input) => {
+    input.value = '';
+};
+
+
+// Сброс всех Input Label
+let resetInputLabels = () => {
+    label.forEach(item => {
+        item.classList.remove('filled');
+    }); // end foreach
+};
+
+
 // Поля ввода
 const input = document.querySelectorAll('.input'),
       label = document.querySelectorAll('.label');
@@ -137,12 +149,6 @@ input.forEach(item => {
         }
     }); // end blur
 }); // end foreach
-
-let resetInputLabel = () => {
-    label.forEach(item => {
-        item.classList.remove('filled');
-    }); // end foreach
-};
 
 
 // Обратный отсчет
@@ -168,26 +174,4 @@ let transformTime = (time) => {
     let seconds = time % 60;
 
     return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`;
-};
-
-// Маска телефона
-let addPhoneMask = (phone) => {
-    let x = phone.target.value.replace(/\D/g, '')
-            .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-    
-    if (!x[0]) {
-        phone.target.value = '+';
-        return;
-    }
-    
-    if (!x[1]) {
-        phone.target.value = `7`;
-        return;
-    }
-
-    phone.target.value = `+7 `
-        + `(${x[2]}`
-        + ( x[3] ? `) ${x[3]}` : '' )
-        + ( x[4] ? `-${x[4]}` : '' )
-        + ( x[5] ? `-${x[5]}` : '' );
 };
